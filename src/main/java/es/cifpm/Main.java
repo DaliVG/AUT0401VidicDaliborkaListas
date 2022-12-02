@@ -13,26 +13,33 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        List<Farmacia> sucursales = new ArrayList<Farmacia>();
+        if (pst.open()){
 
-        boolean validOpen = pst.open();
-        System.out.println(validOpen);
+            System.out.println("Desea introducir una farmacia o mostrar la lista? L = List, F = Intro");
+            String opcion = sc.nextLine();
 
-        System.out.println("Desea introducir una farmacia o mostrar la lista? L = List, F = Intro");
-        String opcion = sc.nextLine();
 
-        if (opcion.equals("F")){
+            if (opcion.equals("F")){
 
-            IntroducirFarmacia(sucursales);
+                pst.add(IntroducirFarmacia());
 
-        } else if (opcion.equals("L")){
+            } else if (opcion.equals("L")){
 
-            MostradoFarmacias(sucursales);
+                MostradoFarmacias(pst.list());
 
-        } else {
+            } else if (opcion.equals("B")){
 
-            System.out.println("no ha introducido una selección válida.");
+//                pst.delete(BorrarFarmacia());
 
+            }
+            else {
+
+                System.out.println("no ha introducido una selección válida.");
+
+            }
+        }
+        else{
+            System.out.println("No se ha cargado la lista");
         }
     }
 }

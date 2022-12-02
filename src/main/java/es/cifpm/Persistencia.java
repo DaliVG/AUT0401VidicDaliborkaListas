@@ -8,9 +8,9 @@ public interface Persistencia {
 
     public boolean close();
 
-    public boolean add();
+    public boolean add(Farmacia sucursal);
 
     public boolean delete(Farmacia sucursal);
 
-    public List<Farmacia> sucursales(Farmacia sucursal);
+    public List<Farmacia> list();
 }
