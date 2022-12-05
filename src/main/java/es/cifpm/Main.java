@@ -11,35 +11,81 @@ public class Main {
     public static Persistencia pst = new impPersistenciaVidic();
     public static void main(String[] args) {
 
+        List<Farmacia> sucursales = new ArrayList<Farmacia>();
+        Menu();
+        IntroOpcion();
+
+
+    }
+    public static void Menu() {
+
+        System.out.println("------------------------------------");
+        System.out.println("---------------- MENU --------------");
+        System.out.println("------------------------------------");
+        System.out.println("1. Buscar por nombre.");
+        System.out.println("2. Lista de farmacias disponibles.");
+        System.out.println("0. Salir.");
+        System.out.println("------------------------------------");
+        System.out.println("9. Admin");
+
+    }
+    public static void IntroOpcion(){
+
         Scanner sc = new Scanner(System.in);
+        System.out.println("Introduzca la opción que desea: ");
+        int option = sc.nextInt();
 
-        if (pst.open()){
-
-            System.out.println("Desea introducir una farmacia o mostrar la lista? L = List, F = Intro");
-            String opcion = sc.nextLine();
-
-
-            if (opcion.equals("F")){
-
-                pst.add(IntroducirFarmacia());
-
-            } else if (opcion.equals("L")){
-
+        switch(option) {
+            case 1:
+//                Buscar();
+                break;
+            case 2:
                 MostradoFarmacias(pst.list());
-
-            } else if (opcion.equals("B")){
-
-//                pst.delete(BorrarFarmacia());
-
-            }
-            else {
-
-                System.out.println("no ha introducido una selección válida.");
-
-            }
+                break;
+            case 0:
+                pst.close();
+                break;
+            case 9:
+                MenuAdmin();
+                IntroOpcionAdmin();
+                break;
+            default:
+                System.out.println("No ha introducido una opción válida.");
         }
-        else{
-            System.out.println("No se ha cargado la lista");
+    }
+
+    public static void IntroOpcionAdmin(){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("ADMIN: Introduzca la opción que desea: ");
+        int option = sc.nextInt();
+
+        switch(option) {
+            case 1:
+               pst.add(IntroducirFarmacia());
+                break;
+            case 2:
+//                pst.delete();
+            case 3:
+                MostradoFarmacias(pst.list());
+                break;
+            case 0:
+                pst.close();
+                break;
+            default:
+                System.out.println("No ha introducido una opción válida.");
         }
+    }
+
+    public static void MenuAdmin() {
+
+        System.out.println("------------------------------------");
+        System.out.println("---------------- MENU --------------");
+        System.out.println("------------------------------------");
+        System.out.println("1. Añadir farmacia.");
+        System.out.println("2. Borrar farmacia.");
+        System.out.println("3. Listar farmacia.");
+        System.out.println("------------------------------------");
+        System.out.println("0. Salir");
     }
 }
