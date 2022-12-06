@@ -15,7 +15,6 @@ public class Main {
         Menu();
         IntroOpcion();
 
-
     }
     public static void Menu() {
 
@@ -65,7 +64,7 @@ public class Main {
                pst.add(IntroducirFarmacia());
                 break;
             case 2:
-//                pst.delete();
+                pst.delete();
             case 3:
                 MostradoFarmacias(pst.list());
                 break;
