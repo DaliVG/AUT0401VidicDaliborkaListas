@@ -1,18 +1,31 @@
 package es.cifpm;
-import java.util.List;
+import java.io.File;
+import java.io.FileReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import static es.cifpm.Funciones.*;
 
 public class Main {
 
+    public static List<Farmacia> sucursales = new ArrayList<Farmacia>();
     public static Persistencia pst = new impPersistenciaVidic();
     public static void main(String[] args) {
 
+
+        File fileName= new File("farmacias_v1.json");
+
+
+
+
+
+        pst.open();
         Menu();
         IntroOpcion();
-
+        MenuAdios();
+        IntroOpcionAdios();
     }
     public static void Menu() {
 
@@ -54,6 +67,7 @@ public class Main {
     public static void IntroOpcionAdmin(){
 
         Scanner sc = new Scanner(System.in);
+
         System.out.println("ADMIN: Introduzca la opción que desea: ");
         int option = sc.nextInt();
 
@@ -73,6 +87,25 @@ public class Main {
                 System.out.println("No ha introducido una opción válida.");
         }
     }
+    public static void IntroOpcionAdios(){
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduzca la opción que desea: ");
+        int option = sc.nextInt();
+
+        switch(option) {
+            case 1:
+                Menu();
+                IntroOpcion();
+                break;
+            case 0:
+                pst.close();
+                System.out.println("Adioooooooos");
+                break;
+            default:
+                System.out.println("No ha introducido una opción válida.");
+        }
+    }
 
     public static void MenuAdmin() {
 
@@ -84,5 +117,15 @@ public class Main {
         System.out.println("3. Listar farmacia.");
         System.out.println("------------------------------------");
         System.out.println("0. Salir");
+    }
+
+    public static void MenuAdios() {
+
+        System.out.println("------------------------------------");
+        System.out.println("¿Desea realizar alguna otra consulta?");
+        System.out.println("------------------------------------");
+        System.out.println("1. Si");
+        System.out.println("0. Adiós");
+        System.out.println("------------------------------------");
     }
 }

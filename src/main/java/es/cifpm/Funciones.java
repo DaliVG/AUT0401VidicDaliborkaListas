@@ -86,9 +86,9 @@ public class Funciones {
 
         Scanner sc = new Scanner(System.in);
         String nombre = "";
-
-        System.out.println("Hemos obtenido los siguientes resultados: ");
+        System.out.println("Introduzca el nombre de la farmacia que desea buscar: ");
         nombre = sc.nextLine();
+        System.out.println("Hemos obtenido los siguientes resultados: ");
 
         List<Farmacia> searchResult = new ArrayList<Farmacia>();
 
@@ -107,4 +107,5 @@ public class Funciones {
             System.out.println("Nombre: "+sucursal.nombre+" Tlfno: "+sucursal.telefono+ "Coordenadas: Ux"+sucursal.Ux +" Uy"+sucursal.Uy+" web: "+sucursal.web);
         }
     }
+
 }
