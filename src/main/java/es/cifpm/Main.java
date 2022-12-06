@@ -3,15 +3,13 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import static es.cifpm.Funciones.IntroducirFarmacia;
-import static es.cifpm.Funciones.MostradoFarmacias;
+import static es.cifpm.Funciones.*;
 
 public class Main {
 
     public static Persistencia pst = new impPersistenciaVidic();
     public static void main(String[] args) {
 
-        List<Farmacia> sucursales = new ArrayList<Farmacia>();
         Menu();
         IntroOpcion();
 
@@ -36,7 +34,7 @@ public class Main {
 
         switch(option) {
             case 1:
-//                Buscar();
+                Buscar(pst.list());
                 break;
             case 2:
                 MostradoFarmacias(pst.list());
@@ -64,7 +62,7 @@ public class Main {
                pst.add(IntroducirFarmacia());
                 break;
             case 2:
-                pst.delete();
+                pst.delete(BorrarFarmacia(pst.list()));
             case 3:
                 MostradoFarmacias(pst.list());
                 break;

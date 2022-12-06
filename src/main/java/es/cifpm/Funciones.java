@@ -18,7 +18,7 @@ public class Funciones {
 
         Farmacia sucursal = null;
         do {
-            if (nombre == "") {
+            if (nombre.equals("")) {
 
                 System.out.println("Debe introducir un nombre.");
 
@@ -28,7 +28,7 @@ public class Funciones {
                 System.out.println("Introduzca el telefono de la farmacia: ");
                 String telefono = sc.nextLine();
 
-                if (telefono == "") {
+                if (telefono.equals("")) {
                     System.out.println("Debe introducir un telefono.");
                 } else {
                     System.out.println("Telefono introducido");
@@ -36,7 +36,7 @@ public class Funciones {
                     System.out.println("Introduzca la web de la farmacia: ");
                     String web = sc.nextLine();
 
-                    if (telefono == "") {
+                    if (web.equals("")) {
                         System.out.println("Debe introducir una web.");
                     } else {
                         System.out.println("Web introducida");
@@ -58,22 +58,37 @@ public class Funciones {
         return sucursal;
     }
 
-    public static void Delete() {
+    public static Farmacia BorrarFarmacia(List<Farmacia> sucursales) {
 
         Scanner sc = new Scanner(System.in);
-        boolean ok = false;
-
+        Farmacia sucursalBorrar = null;
         String nombre = "";
 
         System.out.println("Introduzca el nombre de la farmacia que desea eliminar: ");
 
         nombre = sc.nextLine();
 
-        Search(nombre);
+        Buscar(sucursales);
 
+        System.out.println("¿Qué farmacia desea eliminar?: ");
+        nombre = sc.nextLine();
+
+        for (Farmacia sucursal: sucursales) {
+            if(sucursal.nombre.equals(nombre)){
+                sucursalBorrar = sucursal;
+            }
+        }
+
+        return sucursalBorrar;
     }
 
-    public static List<Farmacia> Search(String nombre, List<Farmacia> sucursales) {
+    public static void Buscar(List<Farmacia> sucursales) {
+
+        Scanner sc = new Scanner(System.in);
+        String nombre = "";
+
+        System.out.println("Hemos obtenido los siguientes resultados: ");
+        nombre = sc.nextLine();
 
         List<Farmacia> searchResult = new ArrayList<Farmacia>();
 
@@ -83,8 +98,7 @@ public class Funciones {
             }
         }
 
-        return searchResult;
-
+        MostradoFarmacias(searchResult);
     }
     public static void MostradoFarmacias(List<Farmacia> sucursales){
 

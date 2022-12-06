@@ -16,7 +16,8 @@ public class impPersistenciaVidic implements Persistencia{
         sucursales.add(new Farmacia("Gran Tarajal", "928165658", 5.65f, 3.25f, "www.gt.es"));
 
         if (sucursales.size()!=3) {
-            validOpen=false;
+
+            validOpen = false;
         }
         return validOpen;
     }
@@ -29,9 +30,13 @@ public class impPersistenciaVidic implements Persistencia{
     @Override
     public boolean add(Farmacia sucursal) {
         try{
+
             sucursales.add(sucursal);
+
         } catch (Exception e){
+
             return false;
+
         }
         return true;
     }
@@ -39,16 +44,22 @@ public class impPersistenciaVidic implements Persistencia{
     @Override
     public boolean delete(Farmacia sucursal) {
         try{
+
             sucursales.remove(sucursal);
+            System.out.println("Se ha borrado con exito.");
+
         } catch (Exception e){
+
             return false;
         }
-        System.out.println("Se ha borrado con exito.");
+
         return true;
     }
 
     @Override
     public List<Farmacia> list() {
+
         return sucursales;
+
     }
 }
