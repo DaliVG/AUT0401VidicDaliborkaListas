@@ -6,7 +6,7 @@ import java.util.List;
 public interface Persistencia {
     boolean openJSON();
 
-    boolean close();
+    boolean closeJSON();
 
     boolean add(Farmacia sucursal);
 

@@ -11,6 +11,7 @@ public class Farmacia {
     public String web;
 
     public Farmacia(String nombre, String telefono, Float ux, Float uy, String web) {
+
         this.nombre = nombre;
         this.telefono = telefono;
         Ux = ux;

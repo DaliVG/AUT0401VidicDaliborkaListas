@@ -59,7 +59,24 @@ public class impPersistenciaVidic implements Persistencia{
     }
 
     @Override
-    public boolean close() {
+    public boolean closeJSON() {
+        boolean validOpen = true;
+        File fileName= new File("VidicDaliborka_farmacias.json");
+        try {
+            FileWriter fileWriter = new FileWriter(fileName);
+            Gson gson = new Gson();
+            gson.toJson(sucursales, fileWriter);
+            fileWriter.close();
+
+        } catch (FileNotFoundException e){
+
+            System.err.println("Error en escribir el fichero");
+            validOpen=false;
+        } catch (IOException e) {
+
+            System.err.println("Error en cerrado del fichero");
+            validOpen=false;
+        }
         return false;
     }
 

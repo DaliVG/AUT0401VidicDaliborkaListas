@@ -2,6 +2,7 @@ package es.cifpm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Funciones {
@@ -64,10 +65,6 @@ public class Funciones {
         Farmacia sucursalBorrar = null;
         String nombre = "";
 
-        System.out.println("Introduzca el nombre de la farmacia que desea eliminar: ");
-
-        nombre = sc.nextLine();
-
         Buscar(sucursales);
 
         System.out.println("¿Qué farmacia desea eliminar?: ");
@@ -87,13 +84,13 @@ public class Funciones {
         Scanner sc = new Scanner(System.in);
         String nombre = "";
         System.out.println("Introduzca el nombre de la farmacia que desea buscar: ");
-        nombre = sc.nextLine();
+        nombre = (sc.nextLine()).toUpperCase();
         System.out.println("Hemos obtenido los siguientes resultados: ");
 
         List<Farmacia> searchResult = new ArrayList<Farmacia>();
 
         for (Farmacia sucursal: sucursales) {
-            if(sucursal.nombre.contains(nombre)){
+            if((sucursal.nombre).toUpperCase().contains(nombre)){
                 searchResult.add(sucursal);
             }
         }
@@ -104,7 +101,7 @@ public class Funciones {
 
         for (Farmacia sucursal: sucursales
         ) {
-            System.out.println("Nombre: "+sucursal.nombre+" Tlfno: "+sucursal.telefono+ "Coordenadas: Ux"+sucursal.Ux +" Uy"+sucursal.Uy+" web: "+sucursal.web);
+            System.out.println("Nombre: "+sucursal.nombre+" Tlfno: "+sucursal.telefono+ " Coordenadas: Ux"+sucursal.Ux +" Uy"+sucursal.Uy+" web: "+sucursal.web);
         }
     }
 

@@ -24,7 +24,7 @@ public class VidicGutierrezDaliborkaFarmacias {
         IntroOpcion();
         MenuAdios();
         IntroOpcionAdios();
-        pst.close();
+        pst.closeJSON();
     }
     public static void Menu() {
 
@@ -45,9 +45,13 @@ public class VidicGutierrezDaliborkaFarmacias {
         int option = sc.nextInt();
 
         switch (option) {
-            case 1 -> Buscar(pst.list());
-            case 2 -> MostradoFarmacias(pst.list());
-            case 0 -> System.exit(0);
+            case 1 -> {Buscar(pst.list());
+                MenuAdios();
+                IntroOpcionAdios();}
+            case 2 -> {MostradoFarmacias(pst.list());
+                MenuAdios();
+                IntroOpcionAdios();}
+            case 0 -> {MenuAdios();IntroOpcionAdios();}
             case 9 -> {
                 MenuAdmin();
                 IntroOpcionAdmin();
@@ -66,14 +70,21 @@ public class VidicGutierrezDaliborkaFarmacias {
         switch(option) {
             case 1:
                pst.add(IntroducirFarmacia());
+                MenuAdios();
+                IntroOpcionAdios();
                 break;
             case 2:
                 pst.delete(BorrarFarmacia(pst.list()));
+                MenuAdios();
+                IntroOpcionAdios();
             case 3:
                 MostradoFarmacias(pst.list());
+                MenuAdios();
+                IntroOpcionAdios();
                 break;
             case 0:
-                System.exit(0);
+                MenuAdios();
+                IntroOpcionAdios();
                 break;
             default:
                 System.out.println("No ha introducido una opción válida.");
@@ -90,9 +101,14 @@ public class VidicGutierrezDaliborkaFarmacias {
                 Menu();
                 IntroOpcion();
             }
-            case 0 -> {
-                System.exit(0);
+            case 2 -> {
+                pst.closeJSON();
                 System.out.println("Adioooooooos");
+                System.exit(0);
+            }
+            case 0 -> {
+                System.out.println("Adioooooooos");
+                System.exit(0);
             }
             default -> System.out.println("No ha introducido una opción válida.");
         }
@@ -116,7 +132,8 @@ public class VidicGutierrezDaliborkaFarmacias {
         System.out.println("¿Desea realizar alguna otra consulta?");
         System.out.println("------------------------------------");
         System.out.println("1. Si");
-        System.out.println("0. Adiós");
+        System.out.println("2. Salir y guardar.");
+        System.out.println("0. Adiós.");
         System.out.println("------------------------------------");
     }
 
