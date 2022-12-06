@@ -1,6 +1,11 @@
 package es.cifpm;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,24 +13,18 @@ import java.util.Scanner;
 
 import static es.cifpm.Funciones.*;
 
-public class Main {
+public class VidicGutierrezDaliborkaFarmacias {
 
     public static List<Farmacia> sucursales = new ArrayList<Farmacia>();
     public static Persistencia pst = new impPersistenciaVidic();
     public static void main(String[] args) {
 
-
-        File fileName= new File("farmacias_v1.json");
-
-
-
-
-
-        pst.open();
+        pst.openJSON();
         Menu();
         IntroOpcion();
         MenuAdios();
         IntroOpcionAdios();
+        pst.close();
     }
     public static void Menu() {
 
@@ -45,22 +44,15 @@ public class Main {
         System.out.println("Introduzca la opción que desea: ");
         int option = sc.nextInt();
 
-        switch(option) {
-            case 1:
-                Buscar(pst.list());
-                break;
-            case 2:
-                MostradoFarmacias(pst.list());
-                break;
-            case 0:
-                pst.close();
-                break;
-            case 9:
+        switch (option) {
+            case 1 -> Buscar(pst.list());
+            case 2 -> MostradoFarmacias(pst.list());
+            case 0 -> System.exit(0);
+            case 9 -> {
                 MenuAdmin();
                 IntroOpcionAdmin();
-                break;
-            default:
-                System.out.println("No ha introducido una opción válida.");
+            }
+            default -> System.out.println("No ha introducido una opción válida.");
         }
     }
 
@@ -81,7 +73,7 @@ public class Main {
                 MostradoFarmacias(pst.list());
                 break;
             case 0:
-                pst.close();
+                System.exit(0);
                 break;
             default:
                 System.out.println("No ha introducido una opción válida.");
@@ -93,17 +85,16 @@ public class Main {
         System.out.println("Introduzca la opción que desea: ");
         int option = sc.nextInt();
 
-        switch(option) {
-            case 1:
+        switch (option) {
+            case 1 -> {
                 Menu();
                 IntroOpcion();
-                break;
-            case 0:
-                pst.close();
+            }
+            case 0 -> {
+                System.exit(0);
                 System.out.println("Adioooooooos");
-                break;
-            default:
-                System.out.println("No ha introducido una opción válida.");
+            }
+            default -> System.out.println("No ha introducido una opción válida.");
         }
     }
 
@@ -127,5 +118,10 @@ public class Main {
         System.out.println("1. Si");
         System.out.println("0. Adiós");
         System.out.println("------------------------------------");
+    }
+
+    public static void LimpiarConsola() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
