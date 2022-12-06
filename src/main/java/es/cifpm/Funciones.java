@@ -18,7 +18,9 @@ public class Funciones {
         nombre = sc.nextLine();
 
         Farmacia sucursal = null;
+
         do {
+
             if (nombre.equals("")) {
 
                 System.out.println("Debe introducir un nombre.");

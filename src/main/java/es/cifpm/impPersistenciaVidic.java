@@ -82,7 +82,7 @@ public class impPersistenciaVidic implements Persistencia{
 
     @Override
     public boolean add(Farmacia sucursal) {
-        try{
+        try {
 
             sucursales.add(sucursal);
 
