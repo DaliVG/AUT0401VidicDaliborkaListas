@@ -16,7 +16,7 @@ import static es.cifpm.Funciones.*;
 public class VidicGutierrezDaliborkaFarmacias {
     public static List<Farmacia> sucursales = new ArrayList<Farmacia>();
     public static Persistencia pst = new impPersistenciaVidic();
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         pst.openJSON();
         Menu();
@@ -101,31 +101,34 @@ public class VidicGutierrezDaliborkaFarmacias {
     }
     public static void Menu() {
         StringBuilder print = new StringBuilder("---------- Menú ----------\n");
-        print.append("------------------------------------");
-        print.append("1. Buscar por nombre.");
-        print.append("2. Lista de farmacias disponibles.");
-        print.append("0. Salir.");
-        print.append("------------------------------------");
+        print.append("------------------------------------\n");
+        print.append("1. Buscar por nombre.\n");
+        print.append("2. Lista de farmacias disponibles.\n");
+        print.append("0. Salir.\n");
+        print.append("------------------------------------\n");
         print.append("9. Admin");
+        System.out.println(print);
     }
     public static void MenuAdmin() {
         StringBuilder print = new StringBuilder("---------- Menú ----------\n");
-        print.append("------------------------------------");
-        print.append("1. Añadir farmacia.");
-        print.append("2. Borrar farmacia.");
-        print.append("3. Listar farmacia.");
-        print.append("------------------------------------");
+        print.append("------------------------------------\n");
+        print.append("1. Añadir farmacia.\n");
+        print.append("2. Borrar farmacia.\n");
+        print.append("3. Listar farmacia.\n");
+        print.append("------------------------------------\n");
         print.append("0. Salir");
+        System.out.println(print);
     }
     public static void MenuAdios() {
         StringBuilder print = new StringBuilder("---------- Menú ----------\n");
+        print.append("------------------------------------\n");
+        print.append("¿Desea realizar alguna otra consulta?\n");
+        print.append("------------------------------------\n");
+        print.append("1. Si\n");
+        print.append("2. Salir y guardar.\n");
+        print.append("0. Adiós.\n");
         print.append("------------------------------------");
-        print.append("¿Desea realizar alguna otra consulta?");
-        print.append("------------------------------------");
-        print.append("1. Si");
-        print.append("2. Salir y guardar.");
-        print.append("0. Adiós.");
-        print.append("------------------------------------");
+        System.out.println(print);
     }
     public static void LimpiarConsola() {
         System.out.print("\033[H\033[2J");

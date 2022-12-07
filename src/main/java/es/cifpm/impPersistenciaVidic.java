@@ -13,72 +13,47 @@ public class impPersistenciaVidic implements Persistencia{
     public static List<Farmacia> sucursales = new ArrayList<Farmacia>();
 
     @Override
-    public boolean openJSON() {
+    public boolean openJSON(){
 
-        boolean validOpen = true;
-
-        File fileName= new File("VidicDaliborka_farmacias.json");
-
-        if (fileName.exists()){
+        String fileName = ("VidicDaliborka_farmacias.json");
+        File fileDone = new File(System.getProperty("java.io.tmpdir")+fileName);
             try {
-                FileReader fileReader = new FileReader(fileName);
+                FileReader fileReader = new FileReader(fileDone);
                 Type type = new TypeToken<List<Farmacia>>(){}.getType();
                 Gson gson = new Gson();
                 sucursales = gson.fromJson(fileReader, type);
                 fileReader.close();
             } catch (FileNotFoundException e){
-                validOpen=false;
-                System.err.println("Error en creacion del fichero");
+                System.err.println("No se ha encontrado un fichero.");
+                return false;
             } catch (IOException e) {
-                validOpen=false;
                 System.err.println("Error en cerrado del fichero");
+                return false;
             }
-        } else {
 
-            sucursales = new ArrayList<>();
-            sucursales.add(new Farmacia("Ofra", "922165658", 5.65f, 3.25f, "www.jajaejje.es"));
-            sucursales.add(new Farmacia("Meridiano", "922005658", 5.65f, 3.25f, "www.meri.es"));
-            sucursales.add(new Farmacia("Gran Tarajal", "928165658", 5.65f, 3.25f, "www.gt.es"));
-
-            try {
-                FileWriter fileWriter = new FileWriter(fileName);
-                Gson gson = new Gson();
-                gson.toJson(sucursales, fileWriter);
-                fileWriter.close();
-
-            } catch (FileNotFoundException e){
-                validOpen=false;
-                System.err.println("Error en escribir el fichero");
-            } catch (IOException e) {
-                validOpen=false;
-                System.err.println("Error en cerrado del fichero");
-            }
-        }
-
-        return validOpen;
+        return true;
     }
-
     @Override
-    public boolean closeJSON() {
+    public boolean closeJSON(){
         boolean validOpen = true;
-        File fileName= new File("VidicDaliborka_farmacias.json");
+
         try {
-            FileWriter fileWriter = new FileWriter(fileName);
+            String fileName= "VidicDaliborka_farmacias.json";
+            FileWriter fileWriter = new FileWriter((System.getProperty("java.io.tmpdir")+fileName), true);
             Gson gson = new Gson();
             gson.toJson(sucursales, fileWriter);
             fileWriter.close();
 
         } catch (FileNotFoundException e){
-
             System.err.println("Error en escribir el fichero");
             validOpen=false;
         } catch (IOException e) {
-
             System.err.println("Error en cerrado del fichero");
             validOpen=false;
         }
-        return false;
+        return validOpen;
     }
+
 
     @Override
     public boolean add(Farmacia sucursal) {

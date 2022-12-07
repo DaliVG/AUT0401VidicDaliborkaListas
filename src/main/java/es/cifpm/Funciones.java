@@ -103,7 +103,7 @@ public class Funciones {
 
         for (Farmacia sucursal: sucursales
         ) {
-            System.out.println("Nombre: "+sucursal.nombre+" Tlfno: "+sucursal.telefono+ " Coordenadas: Ux"+sucursal.Ux +" Uy"+sucursal.Uy+" web: "+sucursal.web);
+            System.out.println("Nombre: "+sucursal.nombre+" Tlfno: "+sucursal.telefono+ " Coordenadas: Ux "+sucursal.Ux +" Uy "+sucursal.Uy+" web: "+sucursal.web);
         }
     }
 
