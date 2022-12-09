@@ -2,58 +2,50 @@ package es.cifpm;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Scanner;
 
+
 public class Funciones {
+    static Scanner sc = new Scanner(System.in);
     public static Farmacia IntroducirFarmacia() {
 
-        Scanner sc = new Scanner(System.in);
         boolean ok = false;
 
-        String nombre = "";
-
+        Farmacia sucursal = null;
+        String nombre = null;
+        String telefono = null;
+        float ux;
+        float uy;
+        String web = null;
         System.out.println("Introduzca el nombre de la farmacia: ");
 
         nombre = sc.nextLine();
 
-        Farmacia sucursal = null;
-
         do {
 
-            if (nombre.equals("")) {
-
-                System.out.println("Debe introducir un nombre.");
-
-            } else {
-                System.out.println("Nombre introducido");
+            if (IntroducirData(nombre, ok)) {
 
                 System.out.println("Introduzca el telefono de la farmacia: ");
-                String telefono = sc.nextLine();
 
-                if (telefono.equals("")) {
-                    System.out.println("Debe introducir un telefono.");
-                } else {
-                    System.out.println("Telefono introducido");
+                telefono = sc.nextLine();
 
-                    System.out.println("Introduzca la web de la farmacia: ");
-                    String web = sc.nextLine();
+            } else if (IntroducirData(telefono, ok)) {
 
-                    if (web.equals("")) {
-                        System.out.println("Debe introducir una web.");
-                    } else {
-                        System.out.println("Web introducida");
+                System.out.println("Introduzca la web de la farmacia: ");
+                web = sc.nextLine();
 
-                        System.out.println("Introduzca las cordenadas de la farmacia: ");
-                        System.out.println("Introduzca las UX de la farmacia: ");
-                        Float ux = Float.parseFloat(sc.nextLine());
-                        System.out.println("Introduzca las UY de la farmacia: ");
-                        Float uy = Float.parseFloat(sc.nextLine());
-                        sucursal = new Farmacia(nombre, telefono, ux, uy, web);
-                        System.out.println("Se ha creado la siguiente farmacia: "+sucursal.nombre);
-                        ok = true;
-                    }
-                }
+            } else if (IntroducirData(web, ok)) {
+
+                System.out.println("Introduzca las cordenadas de la farmacia: ");
+                System.out.println("Introduzca las UX de la farmacia: ");
+                ux = ComprobacionFloat(sc.nextLine());
+
+                System.out.println("Introduzca las UY de la farmacia: ");
+                uy = ComprobacionFloat(sc.nextLine());
+
+                sucursal = new Farmacia(nombre, telefono, ux, uy, web);
+                System.out.println("Se ha creado la siguiente farmacia: " + sucursal.nombre);
+                ok = true;
             }
         }
         while (!ok);
@@ -61,50 +53,71 @@ public class Funciones {
         return sucursal;
     }
 
-    public static Farmacia BorrarFarmacia(List<Farmacia> sucursales) {
+    private static Float ComprobacionFloat(String coordenadas) {
 
-        Scanner sc = new Scanner(System.in);
-        Farmacia sucursalBorrar = null;
-        String nombre = "";
+        try {
 
-        Buscar(sucursales);
+            Float.parseFloat(coordenadas);
 
-        System.out.println("¿Qué farmacia desea eliminar?: ");
-        nombre = sc.nextLine();
+        } catch (Exception e) {
 
-        for (Farmacia sucursal: sucursales) {
-            if(sucursal.nombre.equals(nombre)){
-                sucursalBorrar = sucursal;
+            System.out.println("No ha introducido las coordenadas correctamente.");
+
+        }
+        return Float.parseFloat(coordenadas);
+    }
+
+    private static boolean IntroducirData(String data, boolean ok) {
+
+        if (!data.equals("")) {
+            ok = true;
+        } else {
+            ok = false;
+        }
+        return ok;
+    }
+    public static Farmacia BorrarFarmacia (List < Farmacia > sucursales) {
+
+            Farmacia sucursalBorrar = null;
+            String nombre = "";
+
+            Buscar(sucursales);
+
+            System.out.println("¿Qué farmacia desea eliminar?: ");
+            nombre = sc.nextLine();
+
+            for (Farmacia sucursal : sucursales) {
+                if (sucursal.nombre.equals(nombre)) {
+                    sucursalBorrar = sucursal;
+                }
             }
-        }
 
-        return sucursalBorrar;
+            return sucursalBorrar;
     }
 
-    public static void Buscar(List<Farmacia> sucursales) {
+    public static void Buscar (List < Farmacia > sucursales) {
 
-        Scanner sc = new Scanner(System.in);
-        String nombre = "";
-        System.out.println("Introduzca el nombre de la farmacia que desea buscar: ");
-        nombre = (sc.nextLine()).toUpperCase();
-        System.out.println("Hemos obtenido los siguientes resultados: ");
+            String nombre = "";
+            System.out.println("Introduzca el nombre de la farmacia que desea buscar: ");
+            nombre = (sc.nextLine()).toUpperCase();
+            System.out.println("Hemos obtenido los siguientes resultados: ");
 
-        List<Farmacia> searchResult = new ArrayList<Farmacia>();
+            List<Farmacia> searchResult = new ArrayList<Farmacia>();
 
-        for (Farmacia sucursal: sucursales) {
-            if((sucursal.nombre).toUpperCase().contains(nombre)){
-                searchResult.add(sucursal);
+            for (Farmacia sucursal : sucursales) {
+                if ((sucursal.nombre).toUpperCase().contains(nombre)) {
+                    searchResult.add(sucursal);
+                }
             }
-        }
 
-        MostradoFarmacias(searchResult);
+            MostradoFarmacias(searchResult);
     }
-    public static void MostradoFarmacias(List<Farmacia> sucursales){
+    public static void MostradoFarmacias (List < Farmacia > sucursales) {
 
-        for (Farmacia sucursal: sucursales
-        ) {
-            System.out.println("Nombre: "+sucursal.nombre+" Tlfno: "+sucursal.telefono+ " Coordenadas: Ux "+sucursal.Ux +" Uy "+sucursal.Uy+" web: "+sucursal.web);
-        }
+            for (Farmacia sucursal : sucursales
+            ) {
+                System.out.println("Nombre: " + sucursal.nombre + " Tlfno: " + sucursal.telefono + " Coordenadas: Ux " + sucursal.Ux + " Uy " + sucursal.Uy + " web: " + sucursal.web);
+            }
     }
-
 }
+

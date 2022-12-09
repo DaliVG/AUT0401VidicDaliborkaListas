@@ -130,8 +130,4 @@ public class VidicGutierrezDaliborkaFarmacias {
         print.append("------------------------------------");
         System.out.println(print);
     }
-    public static void LimpiarConsola() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
 }
