@@ -9,8 +9,8 @@ public class Funciones {
     static Scanner sc = new Scanner(System.in);
     public static Farmacia IntroducirFarmacia() {
 
-        boolean ok = false;
-
+        boolean ok = true;
+        boolean valid=false;
         Farmacia sucursal = null;
         String nombre = null;
         String telefono = null;
@@ -29,12 +29,14 @@ public class Funciones {
 
                 telefono = sc.nextLine();
 
-            } else if (IntroducirData(telefono, ok)) {
+            }
+            if (IntroducirData(telefono, ok)) {
 
                 System.out.println("Introduzca la web de la farmacia: ");
                 web = sc.nextLine();
 
-            } else if (IntroducirData(web, ok)) {
+            }
+            if (IntroducirData(web, ok)) {
 
                 System.out.println("Introduzca las cordenadas de la farmacia: ");
                 System.out.println("Introduzca las UX de la farmacia: ");
@@ -45,10 +47,10 @@ public class Funciones {
 
                 sucursal = new Farmacia(nombre, telefono, ux, uy, web);
                 System.out.println("Se ha creado la siguiente farmacia: " + sucursal.nombre);
-                ok = true;
+                valid = true;
             }
         }
-        while (!ok);
+        while (!valid);
 
         return sucursal;
     }
