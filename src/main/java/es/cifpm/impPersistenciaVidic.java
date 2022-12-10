@@ -66,16 +66,20 @@ public class impPersistenciaVidic implements Persistencia{
             return false;
 
         }
+
         return true;
     }
 
     @Override
-    public boolean delete(Farmacia sucursal) {
+    public boolean delete (Farmacia sucursal) {
+
         try{
-
-            sucursales.remove(sucursal);
-            System.out.println("Se ha borrado con exito.");
-
+            if (sucursal.equals(null)){
+                System.out.println("No se puede borrar una sucursal que no existe.");
+            } else{
+                sucursales.remove(sucursal);
+                System.out.println("Se ha borrado con exito.");
+            }
         } catch (Exception e){
 
             return false;
