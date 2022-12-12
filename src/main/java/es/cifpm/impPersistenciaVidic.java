@@ -11,11 +11,10 @@ import java.util.List;
 public class impPersistenciaVidic implements Persistencia{
 
     public static List<Farmacia> sucursales = new ArrayList<Farmacia>();
-
+    public String fileName = ("VidicDaliborka_farmacias.json");
     @Override
     public boolean openJSON(){
 
-        String fileName = ("VidicDaliborka_farmacias.json");
         File fileDone = new File(System.getProperty("java.io.tmpdir")+fileName);
             try {
                 FileReader fileReader = new FileReader(fileDone);
@@ -38,7 +37,6 @@ public class impPersistenciaVidic implements Persistencia{
         boolean validOpen = true;
 
         try {
-            String fileName= "VidicDaliborka_farmacias.json";
             FileWriter fileWriter = new FileWriter((System.getProperty("java.io.tmpdir")+fileName), true);
             Gson gson = new Gson();
             gson.toJson(sucursales, fileWriter);
